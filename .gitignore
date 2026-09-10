@@ -1,0 +1,33 @@
+# Environment variables
+*.env
+*apllicatio.yml
+*application.yaml
+*docker-compose.yml
+
+# Maven build
+target/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.gitattributes
+*.mvn/
+*HELP.md
+*mvnw
+*mvnw.cmd
+
+# Logs
+*.log
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Sensitive authentication files - future automation
+session.json
+storageState.json
+
+# Company files
+*.docx
+*.xlsx
+*.csv
