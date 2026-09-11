@@ -1,8 +1,7 @@
 # Environment variables
-*.env
-*apllicatio.yml
-*application.yaml
-*docker-compose.yml
+.env
+.env.*
+
 
 # Maven build
 target/
@@ -10,11 +9,6 @@ target/
 # IntelliJ IDEA
 .idea/
 *.iml
-*.gitattributes
-*.mvn/
-*HELP.md
-*mvnw
-*mvnw.cmd
 
 # Logs
 *.log
