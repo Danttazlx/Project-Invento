@@ -1,6 +1,9 @@
 package Project_Invento.demo.service;
 
 import Project_Invento.demo.dto.AutomationExecutionResponse;
+import Project_Invento.demo.exception.InvalidFileException;
+import Project_Invento.demo.exception.NotFoundException;
+import Project_Invento.demo.handler.GlobalExceptionHandler;
 import Project_Invento.demo.model.AutomationExecution;
 import Project_Invento.demo.model.ExecutionStatus;
 import Project_Invento.demo.repository.AutomationExecutionRepository;
@@ -25,14 +28,14 @@ public class AutomationExecutionService {
 
         if (file.isEmpty()) {
             log.warn("Empty file received");
-            throw new IllegalArgumentException("File cannot be empty");
+            throw new InvalidFileException("File cannot be empty");
         }
 
         String fileName = file.getOriginalFilename();
 
         if (fileName == null || !fileName.toLowerCase().endsWith(".docx")) {
             log.warn("Invalid file type: {}", fileName);
-            throw new IllegalArgumentException("Only .docx files are allowed");
+            throw new InvalidFileException("Only .docx files are allowed");
         }
 
         log.info("File validated successfully: {}", fileName);
