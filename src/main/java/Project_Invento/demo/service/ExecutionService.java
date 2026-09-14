@@ -1,9 +1,8 @@
 package Project_Invento.demo.service;
 
 import Project_Invento.demo.dto.AutomationExecutionResponse;
+import Project_Invento.demo.etl.extract.ExtractionProcess;
 import Project_Invento.demo.exception.InvalidFileException;
-import Project_Invento.demo.exception.NotFoundException;
-import Project_Invento.demo.handler.GlobalExceptionHandler;
 import Project_Invento.demo.model.AutomationExecution;
 import Project_Invento.demo.model.ExecutionStatus;
 import Project_Invento.demo.repository.AutomationExecutionRepository;
@@ -17,8 +16,9 @@ import java.time.LocalDateTime;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class AutomationExecutionService {
+public class ExecutionService {
 
+    private final ExtractionProcess extractionProcess;
     private final AutomationExecutionRepository repository;
 
 
@@ -47,6 +47,9 @@ public class AutomationExecutionService {
         model.setStatus(ExecutionStatus.RECEIVED);
 
         AutomationExecution saved = repository.save(model);
+
+        extractionProcess.extract(file);
+
 
         AutomationExecutionResponse responseDto = new AutomationExecutionResponse();
 
