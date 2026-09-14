@@ -1,20 +1,18 @@
 package Project_Invento.demo.contoller;
 
 import Project_Invento.demo.dto.AutomationExecutionResponse;
-import Project_Invento.demo.service.AutomationExecutionService;
+import Project_Invento.demo.service.ExecutionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/v1/executions")
+@RequiredArgsConstructor
 public class ProcessingController {
 
-    private final AutomationExecutionService serviceAutomation;
-
-    public ProcessingController(AutomationExecutionService serviceAutomation) {
-        this.serviceAutomation = serviceAutomation;
-    }
+    private final ExecutionService serviceAutomation;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
