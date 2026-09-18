@@ -15,7 +15,7 @@ public class ProcessingController {
     private final ExecutionService serviceAutomation;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public ExecutionResponseDto createExecution (
                 @RequestParam("file") MultipartFile file) {
             return serviceAutomation.validateFile(file);
