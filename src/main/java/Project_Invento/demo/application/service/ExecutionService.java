@@ -1,12 +1,11 @@
-package Project_Invento.demo.service;
+package Project_Invento.demo.application.service;
 
-import Project_Invento.demo.dto.AutomationExecutionResponse;
-import Project_Invento.demo.etl.extract.ExtractionProcess;
-import Project_Invento.demo.exception.InvalidFileException;
-import Project_Invento.demo.model.AutomationExecution;
-import Project_Invento.demo.model.ExecutionStatus;
-import Project_Invento.demo.repository.AutomationExecutionRepository;
-import lombok.RequiredArgsConstructor;
+import Project_Invento.demo.domain.etl.ExtractionProcess;
+import Project_Invento.demo.domain.model.AutomationExecution;
+import Project_Invento.demo.domain.model.ExecutionStatus;
+import Project_Invento.demo.dto.ExecutionResponseDto;
+import Project_Invento.demo.infrastructore.config.exception.InvalidFileException;
+import Project_Invento.demo.ports.out.AutomationExecutionRepositoryPort;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,14 +14,17 @@ import java.time.LocalDateTime;
 
 @Service
 @Slf4j
-@RequiredArgsConstructor
 public class ExecutionService {
 
     private final ExtractionProcess extractionProcess;
-    private final AutomationExecutionRepository repository;
+    private final AutomationExecutionRepositoryPort repositoryPort;
 
+    public ExecutionService(ExtractionProcess extractionProcess,  AutomationExecutionRepositoryPort repositoryPort) {
+        this.extractionProcess = extractionProcess;
+        this.repositoryPort = repositoryPort;
+    }
 
-    public AutomationExecutionResponse validateFile(MultipartFile file) {
+    public ExecutionResponseDto validateFile(MultipartFile file) {
 
         log.info("Starting file validation: {}", file.getOriginalFilename());
 
@@ -46,19 +48,17 @@ public class ExecutionService {
         model.setCreatedAt(LocalDateTime.now());
         model.setStatus(ExecutionStatus.RECEIVED);
 
-        AutomationExecution saved = repository.save(model);
+        AutomationExecution saved = repositoryPort.save(model);
 
         extractionProcess.extract(file);
 
+        ExecutionResponseDto responseDto = new ExecutionResponseDto();
 
-        AutomationExecutionResponse responseDto = new AutomationExecutionResponse();
-
-        responseDto.setId(model.getId());
-        responseDto.setFileName(model.getFileName());
-        responseDto.setCreatedAt(model.getCreatedAt());
-        responseDto.setStatus(model.getStatus());
+        responseDto.setId(saved.getId());
+        responseDto.setFileName(saved.getFileName());
+        responseDto.setCreatedAt(saved.getCreatedAt());
+        responseDto.setStatus(saved.getStatus());
 
         return responseDto;
-
     }
 }

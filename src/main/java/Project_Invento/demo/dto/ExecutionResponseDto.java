@@ -1,6 +1,6 @@
 package Project_Invento.demo.dto;
 
-import Project_Invento.demo.model.ExecutionStatus;
+import Project_Invento.demo.domain.model.ExecutionStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class AutomationExecutionResponse {
+public class ExecutionResponseDto {
 
     private Long id;
     private String fileName;
