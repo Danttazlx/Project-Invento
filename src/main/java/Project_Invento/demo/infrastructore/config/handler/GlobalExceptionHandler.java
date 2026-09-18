@@ -1,4 +1,4 @@
-package Project_Invento.demo.handler;
+package Project_Invento.demo.infrastructore.config.handler;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

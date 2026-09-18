@@ -1,4 +1,4 @@
-package Project_Invento.demo.model;
+package Project_Invento.demo.domain.model;
 
 public enum ExecutionStatus {
 

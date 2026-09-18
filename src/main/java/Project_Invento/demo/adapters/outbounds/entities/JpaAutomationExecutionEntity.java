@@ -1,6 +1,6 @@
-package Project_Invento.demo.model;
+package Project_Invento.demo.adapters.outbounds.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import Project_Invento.demo.domain.model.ExecutionStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class AutomationExecution {
+public class JpaAutomationExecutionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +29,10 @@ public class AutomationExecution {
     private LocalDateTime startedAt;
     private LocalDateTime finishedAt;
     private String errorMessage;
+
+
+
+
+
+
 }

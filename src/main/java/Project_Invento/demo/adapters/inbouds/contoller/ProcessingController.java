@@ -1,7 +1,7 @@
-package Project_Invento.demo.contoller;
+package Project_Invento.demo.adapters.inbouds.contoller;
 
-import Project_Invento.demo.dto.AutomationExecutionResponse;
-import Project_Invento.demo.service.ExecutionService;
+import Project_Invento.demo.dto.ExecutionResponseDto;
+import Project_Invento.demo.application.service.ExecutionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,9 @@ public class ProcessingController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AutomationExecutionResponse createExecution (
-                       @RequestParam("file") MultipartFile file) {
-           AutomationExecutionResponse dto = serviceAutomation.validateFile(file);
-        return dto;
+    public ExecutionResponseDto createExecution (
+                @RequestParam("file") MultipartFile file) {
+            return serviceAutomation.validateFile(file);
     }
 
 

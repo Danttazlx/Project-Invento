@@ -1,6 +1,6 @@
-package Project_Invento.demo.etl.extract;
+package Project_Invento.demo.domain.etl;
 
-import Project_Invento.demo.exception.DocumentExtractException;
+import Project_Invento.demo.infrastructore.config.exception.DocumentExtractException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -20,13 +20,13 @@ public class ExtractionProcess {
         try {
             log.info("Open file: {}", file.getOriginalFilename());
 
-            InputStream inputStream = file.getInputStream();           // o inputStream consegue lê o bytes do MultipartFile
-            XWPFDocument document = new XWPFDocument(inputStream);     // XPTFDocumen recebe por parametro os bytes, conseguindo manipular
+            InputStream inputStream = file.getInputStream();
+            XWPFDocument document = new XWPFDocument(inputStream);
             List<XWPFParagraph> paragraphs = document.getParagraphs();
-            for (XWPFParagraph paragraph : paragraphs) {
+              for (XWPFParagraph paragraph : paragraphs) {
                 System.out.println(paragraph.getText());
             }
-        } catch (IOException e) {                                      // trata a Exception que pode acontecer, IOException
+        } catch (IOException e) {
             log.error(
                     "Failed to read .docx file: {}",
                     file.getOriginalFilename(),e

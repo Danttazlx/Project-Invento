@@ -1,4 +1,4 @@
-package Project_Invento.demo.exception;
+package Project_Invento.demo.infrastructore.config.exception;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {
