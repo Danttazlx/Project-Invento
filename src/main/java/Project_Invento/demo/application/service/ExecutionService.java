@@ -6,6 +6,7 @@ import Project_Invento.demo.domain.model.ExecutionStatus;
 import Project_Invento.demo.dto.ExecutionResponseDto;
 import Project_Invento.demo.infrastructore.config.exception.InvalidFileException;
 import Project_Invento.demo.ports.out.AutomationExecutionRepositoryPort;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,15 +15,12 @@ import java.time.LocalDateTime;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class ExecutionService {
 
     private final ExtractionProcess extractionProcess;
     private final AutomationExecutionRepositoryPort repositoryPort;
 
-    public ExecutionService(ExtractionProcess extractionProcess,  AutomationExecutionRepositoryPort repositoryPort) {
-        this.extractionProcess = extractionProcess;
-        this.repositoryPort = repositoryPort;
-    }
 
     public ExecutionResponseDto validateFile(MultipartFile file) {
 
