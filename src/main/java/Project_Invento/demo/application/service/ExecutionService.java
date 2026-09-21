@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class ExecutionService {
 
     private final ExtractionProcess extractionProcess;
