@@ -19,10 +19,6 @@ public class ExecutionService {
     private final ExtractionProcess extractionProcess;
     private final AutomationExecutionRepositoryPort repositoryPort;
 
-    public ExecutionService(ExtractionProcess extractionProcess,  AutomationExecutionRepositoryPort repositoryPort) {
-        this.extractionProcess = extractionProcess;
-        this.repositoryPort = repositoryPort;
-    }
 
     public ExecutionResponseDto validateFile(MultipartFile file) {
 
