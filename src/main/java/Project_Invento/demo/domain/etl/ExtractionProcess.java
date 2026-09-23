@@ -9,31 +9,46 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
 @Slf4j
 public class ExtractionProcess {
 
-    public void extract(MultipartFile file) {
+    public List<XWPFParagraph> extract(MultipartFile file) {
+
+
+        List<XWPFParagraph> paragraphs = new ArrayList<>();
 
         try {
             log.info("Open file: {}", file.getOriginalFilename());
 
             InputStream inputStream = file.getInputStream();
             XWPFDocument document = new XWPFDocument(inputStream);
-            List<XWPFParagraph> paragraphs = document.getParagraphs();
-              for (XWPFParagraph paragraph : paragraphs) {
+
+
+            paragraphs = document.getParagraphs();
+
+            for (XWPFParagraph paragraph : paragraphs) {
                 System.out.println(paragraph.getText());
             }
+
         } catch (IOException e) {
+
             log.error(
                     "Failed to read .docx file: {}",
-                    file.getOriginalFilename(),e
+                    file.getOriginalFilename(),
+                    e
             );
+
             throw new DocumentExtractException(
-                    "Failed to extract document",e
+                    "Failed to extract document",
+                    e
             );
         }
+
+
+        return paragraphs;
     }
 }
