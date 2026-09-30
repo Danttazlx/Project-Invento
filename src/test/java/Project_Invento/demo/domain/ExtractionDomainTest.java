@@ -1,5 +1,6 @@
-package Project_Invento.demo.domain.etl;
+package Project_Invento.demo.domain;
 
+import Project_Invento.demo.domain.etl.ExtractionProcess;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;

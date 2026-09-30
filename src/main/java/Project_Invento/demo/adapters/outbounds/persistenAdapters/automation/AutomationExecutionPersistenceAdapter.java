@@ -1,4 +1,4 @@
-package Project_Invento.demo.adapters.outbounds.persistenAdapters;
+package Project_Invento.demo.adapters.outbounds.persistenAdapters.automation;
 
 import Project_Invento.demo.adapters.outbounds.entities.JpaAutomationExecutionEntity;
 import Project_Invento.demo.adapters.outbounds.mapper.AutomationExecutionMapper;
@@ -20,16 +20,13 @@ public class AutomationExecutionPersistenceAdapter
     @Override
     public AutomationExecution save(AutomationExecution execution) {
 
-        JpaAutomationExecutionEntity entity =
+        JpaAutomationExecutionEntity entityJpa =
                 mapper.toEntity(execution);
 
         JpaAutomationExecutionEntity savedEntity =
-                repository.save(entity);
+                repository.save(entityJpa);
 
-        AutomationExecution savedExecution =
-                mapper.toDomain(savedEntity);
-
-        return savedExecution;
+        return mapper.toDomain(savedEntity);
     }
 
 }

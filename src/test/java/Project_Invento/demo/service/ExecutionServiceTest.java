@@ -2,13 +2,12 @@ package Project_Invento.demo.service;
 
 
 import Project_Invento.demo.application.service.ExecutionService;
-import Project_Invento.demo.domain.etl.ExtractionProcess;
 import Project_Invento.demo.domain.model.AutomationExecution;
 import Project_Invento.demo.domain.model.ExecutionStatus;
+import Project_Invento.demo.dto.DocumentInput;
 import Project_Invento.demo.dto.ExecutionResponseDto;
-import Project_Invento.demo.infrastructore.config.exception.InvalidFileException;
+import Project_Invento.demo.infrastructore.exception.exceptions.InvalidFileException;
 import Project_Invento.demo.ports.out.AutomationExecutionRepositoryPort;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,7 +28,7 @@ public class ExecutionServiceTest {
     @InjectMocks
     private ExecutionService executionService;
     @Mock
-    private ExtractionProcess extractionProcess;
+     private ExtractionProcess extractionProcess;
     @Mock
     private AutomationExecutionRepositoryPort automationRepositoryPort;
 
@@ -37,7 +36,7 @@ public class ExecutionServiceTest {
     @Test
     void invalidExceptionService() {
 
-        MultipartFile file = mock(MultipartFile.class);
+        DocumentInput file = mock(DocumentInput.class);
         when(file
                 .isEmpty())
                 .thenReturn(true);
