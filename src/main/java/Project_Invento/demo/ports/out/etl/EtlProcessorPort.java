@@ -1,10 +1,11 @@
 package Project_Invento.demo.ports.out.etl;
 
 import Project_Invento.demo.dto.DocumentInput;
+import Project_Invento.demo.dto.EtlResponseDto;
 
 
 public interface EtlProcessorPort {
 
-    void processEtl(DocumentInput file);
+    EtlResponseDto processEtl(DocumentInput file);
 
 }

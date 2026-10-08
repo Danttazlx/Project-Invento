@@ -18,11 +18,12 @@ public class ProcessingController {
     private final ExecutionService serviceAutomation;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.OK)
     public ExecutionResponseDto createExecution (
                 @RequestParam("file") MultipartFile file) throws IOException {
 
           DocumentInput documentInput = new DocumentInput(
+
 
                   file.getOriginalFilename(),
                   file.getContentType(),

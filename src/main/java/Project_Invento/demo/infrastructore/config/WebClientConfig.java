@@ -10,7 +10,9 @@ public class WebClientConfig {
 
     @Bean
     public WebClient pythonWebClient (){
-        return  WebClient.builder().build();
+        return  WebClient.builder()
+                .baseUrl("http://localhost:8000")
+                .build();
     };
 
 

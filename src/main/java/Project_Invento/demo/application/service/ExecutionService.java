@@ -3,6 +3,7 @@ package Project_Invento.demo.application.service;
 import Project_Invento.demo.domain.model.AutomationExecution;
 import Project_Invento.demo.domain.model.ExecutionStatus;
 import Project_Invento.demo.dto.DocumentInput;
+import Project_Invento.demo.dto.EtlResponseDto;
 import Project_Invento.demo.dto.ExecutionResponseDto;
 import Project_Invento.demo.infrastructore.exception.exceptions.InvalidFileException;
 import Project_Invento.demo.ports.out.AutomationExecutionRepositoryPort;
@@ -47,7 +48,12 @@ public class ExecutionService {
 
         AutomationExecution automationExecution = repositoryPort.save(model);
 
-        processorPort.processEtl(file);
+        EtlResponseDto responsePython = processorPort.processEtl(file);
+
+        automationExecution.setStatus(ExecutionStatus.COMPLETED);
+        automationExecution.setFinishedAt(LocalDateTime.now());
+
+        automationExecution = repositoryPort.save(automationExecution);
 
         ExecutionResponseDto responseDto = new ExecutionResponseDto();
 

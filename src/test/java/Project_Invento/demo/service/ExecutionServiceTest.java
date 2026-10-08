@@ -27,8 +27,8 @@ public class ExecutionServiceTest {
 
     @InjectMocks
     private ExecutionService executionService;
-    @Mock
-     private ExtractionProcess extractionProcess;
+ //   @Mock
+//private ExtractionProcess extractionProcess;
     @Mock
     private AutomationExecutionRepositoryPort automationRepositoryPort;
 
